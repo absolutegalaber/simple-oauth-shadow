@@ -9,5 +9,3 @@ In order to use this implementation, you have to
 
 - Add the filter ShadowTokenFilter to your web.xml with the filter mapping pointing to your protected resources
 
-
-Small change to trigger a travis build
