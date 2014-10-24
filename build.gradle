@@ -11,6 +11,9 @@ group = 'org.absolutegalaber'
 repositories {
     mavenLocal()
     mavenCentral()
+    maven {
+        url "http://dl.bintray.com/absolutegalaber/simple-oauth"
+    }
 }
 
 buildscript {
