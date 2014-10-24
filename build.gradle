@@ -1,0 +1,77 @@
+/**
+ * BAse Project Config
+ */
+description = 'Simple OAuth Shadow'
+version = '0.1-SNAPSHOT'
+group = 'org.absolutegalaber'
+
+/**
+ * Repos
+ */
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+         maven {
+            url "http://dl.bintray.com/absolutegalaber/simple-oauth"
+        }
+    }
+
+    dependencies {
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.0'
+    }
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
+/**
+ * Project Plugins
+ */
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'project-report'
+apply plugin: 'jacoco'
+apply plugin: 'com.github.kt3k.coveralls'
+
+/**
+ * Java 1.7
+ */
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+/**
+ * Add a 'providedCompile' config for 'providedCompile'-Scope like in Maven.
+ */
+configurations { providedCompile }
+sourceSets.main.compileClasspath += configurations.providedCompile
+sourceSets.test.compileClasspath += configurations.providedCompile
+sourceSets.test.runtimeClasspath += configurations.providedCompile
+
+
+dependencies {
+    compile 'org.absolutegalaber:simple-oauth:0.1'
+    providedCompile 'javax.servlet:servlet-api:2.5'
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    testCompile 'cglib:cglib-nodep:3.1'
+    testCompile 'org.slf4j:slf4j-simple:1.7.7'
+}
+
+/**
+ * JaCoCo Config
+ */
+jacoco {
+    toolVersion = '0.7.2.201409121644'
+}
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}
