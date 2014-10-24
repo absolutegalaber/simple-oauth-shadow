@@ -8,3 +8,6 @@ In order to use this implementation, you have to
 - Add the servlet ShadowCallbackServlet to your web.xml (e.g. with the url /auth_callback)
 
 - Add the filter ShadowTokenFilter to your web.xml with the filter mapping pointing to your protected resources
+
+
+Small change to trigger a travis build
